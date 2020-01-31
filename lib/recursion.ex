@@ -19,6 +19,7 @@ defmodule CodeFlow.Recursion do
   """
   alias CodeFlow.Schemas.OrderItem
   alias CodeFlow.Schemas.Customer
+  alias CodeFlow.Fake.Customers
 
   def order_total(order_items) do
     do_order_total(order_items, 0)
@@ -66,7 +67,7 @@ defmodule CodeFlow.Recursion do
 
   defp do_create_customers(total, num) when num < total do
     # for simplicity, not handling a failed create
-    {:ok, _customer} = Customer.create(%{name: "Customer #{num}"})
+    {:ok, _customer} = Customers.create(%{name: "Customer #{num}"})
     do_create_customers(total, num + 1)
   end
 
